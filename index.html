@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracker Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crypto Portfolio Tracker</h1>
+            <div class="total-worth">Net Worth: <span id="net-worth">$0.00</span></div>
+        </header>
+
+        <main>
+            <section class="input-panel">
+                <h3>Add New Holding</h3>
+                <input type="text" id="coin-id" placeholder="e.g., bitcoin or ethereum">
+                <input type="number" id="coin-amount" placeholder="Amount owned">
+                <button id="add-btn">Add to Portfolio</button>
+            </section>
+
+            <section class="display-panel">
+                <div class="chart-container">
+                    <canvas id="portfolioChart"></canvas>
+                </div>
+                <table id="asset-table">
+                    <thead>
+                        <tr>
+                            <th>Asset</th>
+                            <th>Amount</th>
+                            <th>Live Price</th>
+                            <th>Total Value</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="asset-list"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

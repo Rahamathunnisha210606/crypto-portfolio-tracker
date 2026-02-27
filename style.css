@@ -1,0 +1,11 @@
+body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+.container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+header { text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+.total-worth { font-size: 2rem; color: #2ecc71; font-weight: bold; }
+.input-panel { margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 8px; text-align: center; }
+input, button { padding: 10px; margin: 5px; border: 1px solid #ddd; border-radius: 5px; }
+button { background: #3498db; color: white; cursor: pointer; border: none; }
+button:hover { background: #2980b9; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+.chart-container { width: 300px; margin: 20px auto; }
