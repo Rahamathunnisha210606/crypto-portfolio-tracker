@@ -3,44 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Tracker Pro</title>
+    <title>WealthDash Pro | Live Analysis Dashboard</title>
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Crypto Portfolio Tracker</h1>
-            <div class="total-worth">Net Worth: <span id="net-worth">$0.00</span></div>
+
+    <div id="login-overlay" class="overlay">
+        <div class="login-box">
+            <div class="brand-icon">💎</div>
+            <h2>Member Activation</h2>
+            <p>Enter your name to unlock Pro Analysis tools.</p>
+            <input type="text" id="user-name-input" placeholder="Full Name">
+            <button class="btn-primary" onclick="loginAndAnalyze()">Activate Dashboard</button>
+        </div>
+    </div>
+
+    <div id="main-dashboard" class="hidden">
+        <header class="top-nav">
+            <h1>WealthDash <span class="version">v2.6</span></h1>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="btn-theme" onclick="toggleTheme()">☀️ Light Mode</button>
+                <button class="btn-danger" onclick="logout()">Logout</button>
+            </div>
         </header>
 
-        <main>
-            <section class="input-panel">
-                <h3>Add New Holding</h3>
-                <input type="text" id="coin-id" placeholder="e.g., bitcoin or ethereum">
-                <input type="number" id="coin-amount" placeholder="Amount owned">
-                <button id="add-btn">Add to Portfolio</button>
-            </section>
+        <div class="card pulse-bar">
+            <div class="pulse-item"><small>GLOBAL CAP</small><div id="global-cap" class="stat-v">...</div></div>
+            <div class="pulse-item"><small>24H VOLUME</small><div id="global-vol" class="stat-v">...</div></div>
+            <div class="pulse-item"><small>ACTIVE COINS</small><div id="global-coins" class="stat-v">...</div></div>
+            <div class="pulse-item"><small>BTC DOMINANCE</small><div id="btc-dom" class="stat-v">...</div></div>
+        </div>
 
-            <section class="display-panel">
-                <div class="chart-container">
-                    <canvas id="portfolioChart"></canvas>
+        <div class="dashboard-grid">
+            <aside class="sidebar">
+                <div class="card card-membership">
+                    <div class="id-badge">
+                        <div class="id-header">WD-NETWORK <span>PRO</span></div>
+                        <div class="id-content">
+                            <div class="id-text">
+                                <small>HOLDER</small>
+                                <div id="card-name" class="bold-val">---</div>
+                                <br>
+                                <small>MEMBER ID</small>
+                                <div id="card-id" class="bold-val">#0000</div>
+                            </div>
+                            <div id="qrcode" class="qr-style"></div>
+                        </div>
+                    </div>
                 </div>
-                <table id="asset-table">
-                    <thead>
-                        <tr>
-                            <th>Asset</th>
-                            <th>Amount</th>
-                            <th>Live Price</th>
-                            <th>Total Value</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="asset-list"></tbody>
-                </table>
-            </section>
-        </main>
+
+                <div class="card market-table-card">
+                    <h3>Live Rates (INR)</h3>
+                    <div class="mini-table-scroll">
+                        <table>
+                            <thead>
+                                <tr><th>Asset</th><th>Price</th><th>24h%</th></tr>
+                            </thead>
+                            <tbody id="market-rates-body">
+                                <tr><td colspan="3">Loading rates...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card card-notebook">
+                    <h3>Analysis Notebook</h3>
+                    <textarea id="note-input" placeholder="Type strategy..."></textarea>
+                    <button class="btn-primary" onclick="saveNote()">💾 Save Entry</button>
+                    <div id="notes-display"></div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="card chart-container">
+                    <div id="tradingview_widget"></div>
+                </div>
+                <div class="card news-section">
+                    <h3>Live Blockchain News Feed</h3>
+                    <div id="tradingview-news-widget"></div>
+                </div>
+            </main>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
